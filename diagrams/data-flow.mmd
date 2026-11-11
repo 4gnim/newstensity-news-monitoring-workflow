@@ -1,0 +1,17 @@
+flowchart TD
+    A[Source record] --> B[Map to canonical schema]
+    B --> C{Required fields valid?}
+    C -- No --> R[Quarantine / error log]
+    C -- Yes --> D[Normalize title, body, date, source]
+    D --> E[Generate content fingerprint]
+    E --> F{Duplicate?}
+    F -- Yes --> G[Link to canonical article]
+    F -- No --> H[Store unique article]
+    H --> I[Extract entities and features]
+    I --> J[Assign issue cluster]
+    J --> K[Predict sentiment + confidence]
+    K --> L{Needs human review?}
+    L -- Yes --> M[Analyst review / correction]
+    L -- No --> N[Aggregate analytics]
+    M --> N
+    N --> O[Dashboard / report / alert]

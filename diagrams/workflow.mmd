@@ -1,0 +1,16 @@
+flowchart LR
+    A[News Data Collection
+Existing source / RSS / API / Excel] --> B[Automated Data Processing
+Cleaning / Validation / Dedup / Normalization]
+    B --> C[Issue Detection & Topic Clustering
+Keywords / NER / Similarity / Clustering]
+    C --> D[AI Sentiment Analysis
+Positive / Negative / Neutral]
+    D --> E[News Analytics
+Volume / Sentiment / Media / Trends]
+    E --> F[Dashboard & Automated Report
+Insights / Alerts / Export]
+    F --> G[Analyst Review]
+    G --> H[Feedback & Evaluation]
+    H -. quality feedback .-> C
+    H -. label feedback .-> D

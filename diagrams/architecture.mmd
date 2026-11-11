@@ -1,0 +1,38 @@
+flowchart TB
+    subgraph Sources[Input Sources]
+        S1[Existing Newstensity data]
+        S2[RSS / News API]
+        S3[Excel / CSV import]
+    end
+    subgraph Ingestion[Integration Layer]
+        I1[Source adapters]
+        I2[Scheduled / incremental jobs]
+        I3[Schema mapping]
+    end
+    subgraph Processing[Processing & AI Layer]
+        P1[Validation + normalization]
+        P2[Exact / near-duplicate check]
+        P3[Keyword extraction + NER]
+        P4[Semantic similarity + topic clustering]
+        P5[Sentiment classifier]
+    end
+    subgraph Data[Storage & Analytics]
+        D1[(Raw / staging store)]
+        D2[(Canonical article store)]
+        D3[(Enrichment & aggregate store)]
+    end
+    subgraph Consumption[Analyst Layer]
+        C1[Monitoring dashboard]
+        C2[Reports & alerts]
+        C3[Human review queue]
+    end
+    S1 --> I1
+    S2 --> I1
+    S3 --> I1
+    I1 --> I2 --> I3 --> D1 --> P1 --> P2 --> D2
+    D2 --> P3 --> P4 --> P5 --> D3
+    D3 --> C1
+    D3 --> C2
+    D3 --> C3
+    C3 -. corrected labels / issue mapping .-> P4
+    C3 -. validated labels .-> P5
